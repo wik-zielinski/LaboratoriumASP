@@ -5,7 +5,6 @@ namespace LabApp.Models;
 public class IsbnAttribute : ValidationAttribute
 {
     private bool _requireControlSum;
-    string isbn;
 
     public IsbnAttribute(bool requireControlSum)
     {
@@ -19,7 +18,7 @@ public class IsbnAttribute : ValidationAttribute
             ErrorMessage = "Isbn nie może mieć wartość null";
             return false;
         }
-        if (value is not string)
+        if (value is not string isbn)
         {
             ErrorMessage = "Isbn musi być podany jako łańcuch";
             return false;
