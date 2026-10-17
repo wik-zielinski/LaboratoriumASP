@@ -1,11 +1,12 @@
 @model List<Book>
-<h2>Książki</h2>
+
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
 <h2>Lista książek</h2>
+<a class="btn btn-primary" asp-action="Create" asp-controller="Book">Dodaj książke</a>
 <table class="table">
     <thead>
     <th>
@@ -23,12 +24,7 @@
         @{
             foreach (var book in Model)
             {
-                <tr>
-                    <td>@book.Title</td>
-                    <td>@book.Author</td>
-                    <td>@book.PublicationDate</td>
-                    <td>@book.Price</td>
-                </tr>
+                <partial model=@book name="_BookRow"/>
             }
         }
     </tbody>
