@@ -1,0 +1,35 @@
+@model List<Book>
+<h2>Książki</h2>
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Lista książek</h2>
+<table class="table">
+    <thead>
+    <th>
+        Tytuł
+    </th>
+    <th>
+        Autor
+    </th>
+    <th>
+        Rok
+    </th>
+    <th>Cena</th>
+    </thead>
+    <tbody>
+        @{
+            foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.PublicationDate</td>
+                    <td>@book.Price</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
