@@ -72,7 +72,7 @@ public class BookController : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        return View();
+        return View(new BookFormViewModel());
     }
     
     [HttpPost]
@@ -92,7 +92,7 @@ public class BookController : Controller
             NumPages =  model.NumPages,
             Isbn =  model.Isbn,
         });
-        TempData["Success"] =  "Book created successfully";
-        return RedirectToAction(nameof(Index));
+        TempData["Success"] =  $"Dodano książkę „{model.Title}”.";
+        return View("Index", BookStoreMemory.Books);
     }
 }

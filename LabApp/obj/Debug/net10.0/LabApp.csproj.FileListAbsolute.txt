@@ -201,10 +201,7 @@ C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\dotnet-wat
 C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\dotnet-watch\browser-tools-key.private.json
 C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\jsmodules\jsmodules.build.manifest.json
 C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\scopedcss\scopedcss.cache
-C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\compressed\ygtkwm5goq-{0}-hbxp78vwan-hbxp78vwan.gz
 C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\compressed\pui1msd025-{0}-9qayq9rh6l-9qayq9rh6l.gz
-C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\compressed\ixzmpkj6s1-{0}-pmpabpnd9a-pmpabpnd9a.gz
-C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\compressed\4xmd3j7d3v-{0}-o299wl1apk-o299wl1apk.gz
 C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\LabApp.csproj.Up2Date
 C:\Users\Student\RiderProjects\LaboratoriumASP\LabApp\bin\Debug\net10.0\appsettings.Development.json
 C:\Users\Student\RiderProjects\LaboratoriumASP\LabApp\bin\Debug\net10.0\appsettings.json
@@ -304,3 +301,6 @@ C:\Users\Student\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\refint\L
 C:\Users\Student\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\LabApp.pdb
 C:\Users\Student\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\LabApp.genruntimeconfig.cache
 C:\Users\Student\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\ref\LabApp.dll
+C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\compressed\ygtkwm5goq-{0}-s9y91u5nkn-s9y91u5nkn.gz
+C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\compressed\ixzmpkj6s1-{0}-lvkpp2i49p-lvkpp2i49p.gz
+C:\Users\ziome\RiderProjects\LaboratoriumASP\LabApp\obj\Debug\net10.0\compressed\4xmd3j7d3v-{0}-scyj3pnqhf-scyj3pnqhf.gz

@@ -28,7 +28,7 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Books</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Książki</a>
                     </li>
                 </ul>
             </div>
@@ -45,6 +45,7 @@
 <footer class="border-top footer text-muted">
     <div class="container">
         &copy; 2026 - LabApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        @await RenderSectionAsync("Footer", required: false)
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

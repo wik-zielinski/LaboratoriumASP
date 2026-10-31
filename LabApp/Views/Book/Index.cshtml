@@ -6,7 +6,7 @@
 }
 
 <h2>Lista książek</h2>
-<a class="btn btn-primary" asp-action="Create" asp-controller="Book">Dodaj książke</a>
+<a class="btn btn-primary mb-3" asp-action="Create" asp-controller="Book">+ Dodaj książke</a>
 <table class="table">
     <thead>
     <th>
@@ -29,3 +29,22 @@
         }
     </tbody>
 </table>
+
+
+@section Styles {
+    <style>
+        h2 {
+            color: #6f42c1;
+        }
+    </style>
+}
+
+@section Footer {
+    <span class="ms-3">| Sekcja stopki z widoku listy książek</span>
+}
+
+@section Scripts {
+    <script>
+        console.log("Skrypt z widoku Book/Index został pomyślnie uruchomiony!");
+    </script>
+}

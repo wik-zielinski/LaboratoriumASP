@@ -1,9 +1,13 @@
+using System.Globalization;
+
 namespace LabApp;
 
 public class Program
 {
     public static void Main(string[] args)
     {
+        CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pl-PL");
+        CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pl-PL");
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
@@ -19,6 +23,11 @@ public class Program
             app.UseHsts();
         }
 
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage(); // To generuje czytelną stronę błędu
+        }
+        
         app.UseHttpsRedirection();
         app.UseRouting();
 

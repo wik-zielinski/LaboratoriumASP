@@ -31,6 +31,11 @@
         <input asp-for="PublicationDate" class="form-control" />
         <span asp-validation-for="PublicationDate" class="text-danger"></span>
     </div>
+    <div class="mb-3">
+        <label asp-for="PublisherCode" class="form-label"></label>
+        <input asp-for="PublisherCode" class="form-control" />
+        <span asp-validation-for="PublisherCode" class="text-danger"></span>
+    </div>
     
     @* Pozostałe pola dodaj analogicznie: Isbn, PublicationDate (type="date"), NumPages, Price, Author *@
     <button class="btn btn-primary">Zapisz</button>
