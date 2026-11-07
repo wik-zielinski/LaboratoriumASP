@@ -13,6 +13,7 @@ public class BookController : Controller
     public IActionResult Status(int code = 200) => StatusCode(code);
     
     // GET /Book/Details/3 - widok
+    [HttpGet("Book/Details/{id:int}")]
     public IActionResult Details(int id)
     {
         ViewBag.Id = id;
@@ -95,4 +96,21 @@ public class BookController : Controller
         TempData["Success"] =  $"Dodano książkę „{model.Title}”.";
         return View("Index", BookStoreMemory.Books);
     }
+
+    public async Task<IActionResult> ByYear(int year)
+    {
+         /* filtruj listę po roku, zwróć widok Index */
+         var books = BookStoreMemory.Books.Where(b => b.PublicationDate.HasValue && b.PublicationDate.Value.Year == year).ToList();
+         
+         return View("Index", books);
+    }
+
+    public async Task<IActionResult> ByIsbn(string isbn)
+    {
+         /* znajdź książkę, przekieruj na Details lub NotFound() */
+         var books = BookStoreMemory.Books.Where(b => b.Isbn == isbn).ToList();
+         
+         return View("Index", books);
+    }
+
 }

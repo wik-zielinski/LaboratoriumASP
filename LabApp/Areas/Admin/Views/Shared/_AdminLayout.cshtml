@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Panel Admina</title>
+</head>
+<body>
+
+<nav>
+    <a asp-area="Admin"
+       asp-controller="Dashboard"
+       asp-action="Index">
+        Dashboard
+    </a>
+    
+    <a asp-area=""
+       asp-controller="Home"
+       asp-action="Index">
+        Strona główna
+    </a>
+</nav>
+
+<div class="container">
+    @RenderBody()
+</div>
+
+</body>
+</html>
