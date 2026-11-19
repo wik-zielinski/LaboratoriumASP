@@ -1,0 +1,28 @@
+@model System.Collections.Generic.IEnumerable<LabApp.Models.RouteInfo>
+
+@{
+    ViewBag.Title = "Routes";
+    Layout = "_Layout";
+}
+
+<h2>Route info</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Adres</th>
+        <th>Kontroler.Akcja</th>
+        <th>Metoda HTTP</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var route in Model)
+    {
+        <tr>
+            <td><code>@route.Pattern</code></td>
+            <td>@(string.IsNullOrEmpty(route.Area) ? "" : $"{route.Area}.")@route.Controller.@route.Action</td>
+            <td>@(string.IsNullOrEmpty(route.Methods) ? "Dowolna" : route.Methods)</td>
+        </tr>
+    }
+    </tbody>
+</table>

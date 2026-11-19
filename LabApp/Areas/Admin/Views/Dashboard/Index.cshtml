@@ -1,9 +1,24 @@
+@model IReadOnlyList<KeyValuePair<string, long>>
+
 <h2>Dashboard Admina</h2>
 
-<p>Witam</p>
+<p>Łączna liczba żądań do serwera: <strong>@ViewBag.TotalRequests</strong></p>
 
-<a asp-area=""
-   asp-controller="Home"
-   asp-action="Index">
-    Strona główna
-</a>
+<h3>5 najpopularniejszych ścieżek</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Ścieżka</th>
+        <th>Liczba żądań</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><code>@item.Key</code></td>
+            <td>@item.Value</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,29 @@
+@model List<LabApp.Models.Author>
+
+@{
+    ViewBag.Title = "Autorzy";
+}
+
+<h2>Lista autorów</h2>
+
+<p>
+    <a asp-area="Admin" asp-controller="Authors" asp-action="Create">Dodaj autora</a>
+</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Imię i nazwisko</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var author in Model)
+    {
+        <tr>
+            <td>@author.Id</td>
+            <td>@author.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>

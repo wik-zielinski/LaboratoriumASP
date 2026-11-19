@@ -1,12 +1,18 @@
 using System.Text;
+using LabApp.Filters;
 using LabApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LabApp.Controllers;
 
+[MeasureTime]
+[ServiceFilter(typeof(LogActionFilter))]
 public class BookController : Controller
 {
 // (0) GET /Book/Hello - zwykły tekst
+    [SecondActionFilter("Filtr-A", Order = 1)]
+    [SecondActionFilter("Filtr-B", Order = 2)]
+    [MeasureTime(Order = 3)]
     public IActionResult Hello() => Content("Witaj w BookStore!", "text/plain; charset=utf-8");
     
     // GET /Book/Status?code=418 - dowolny kod statusu
@@ -16,6 +22,8 @@ public class BookController : Controller
     [HttpGet("Book/Details/{id:int}")]
     public IActionResult Details(int id)
     {
+        var book = BookStoreMemory.Books.FirstOrDefault(b => b.Id == id);
+        if (book is null) return NotFound();
         ViewBag.Id = id;
         return View();
     }
@@ -108,9 +116,12 @@ public class BookController : Controller
     public async Task<IActionResult> ByIsbn(string isbn)
     {
          /* znajdź książkę, przekieruj na Details lub NotFound() */
-         var books = BookStoreMemory.Books.Where(b => b.Isbn == isbn).ToList();
+         var book = BookStoreMemory.Books.FirstOrDefault(b => b.Isbn.Replace("-", "") == isbn);
+
+         if (book is null) return NotFound();
          
-         return View("Index", books);
+         return RedirectToAction(nameof(Details), new { id = book.Id });
     }
 
+    public IActionResult Boom() => throw new InvalidOperationException("Celowy wyjątek");
 }

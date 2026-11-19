@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Panel Admina</title>
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
 </head>
 <body>
 
@@ -11,6 +12,12 @@
        asp-controller="Dashboard"
        asp-action="Index">
         Dashboard
+    </a>
+    
+    <a asp-area="Admin"
+       asp-controller="Authors"
+       asp-action="Index">
+        Autorzy
     </a>
     
     <a asp-area=""

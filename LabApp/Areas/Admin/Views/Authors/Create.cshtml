@@ -1,0 +1,20 @@
+@model LabApp.Models.Author
+
+@{
+    ViewBag.Title = "Dodaj Autora";
+}
+
+<h2>Dodaj nowego autora</h2>
+
+<form asp-area="Admin" asp-controller="Authors" asp-action="Create" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <button type="submit">Zapisz</button>
+</form>
+
+<p>
+    <a asp-area="Admin" asp-controller="Authors" asp-action="Index">Powrót do listy autorów</a>
+</p>

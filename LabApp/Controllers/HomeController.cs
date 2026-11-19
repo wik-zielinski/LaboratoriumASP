@@ -53,4 +53,21 @@ public class HomeController : Controller
             });
         return View(routes);
     }
+    
+    public IActionResult Boom() => throw new InvalidOperationException("Celowy wyjątek");
+
+    public IActionResult HttpStatus(int code)
+    {
+        Response.StatusCode = code;
+        ViewBag.Code = code;
+        ViewBag.description = code switch
+        {
+            404 => "Nie znaleziono żądanej strony (Not Found).",
+            403 => "Brak dostępu do zasobu (Forbidden).",
+            418 => "Jestem czajnikiem (I'm a teapot).",
+            500 => "Wewnętrzny błąd serwera (Internal Server Error).",
+            _ => "Wystąpił błąd podczas przetwarzania żądania."
+        };
+        return View();
+    }
 }

@@ -1,4 +1,6 @@
 using System.Globalization;
+using LabApp.Filters;
+using LabApp.Middleware;
 
 namespace LabApp;
 
@@ -11,9 +13,14 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        builder.Services.AddControllersWithViews();
-
+        builder.Services.AddControllersWithViews(o => o.Filters.Add<GlobalExceptionFilter>());
+        builder.Services.AddScoped<LogActionFilter>();
+        builder.Services.AddSingleton<RequestStats>();
+        
         var app = builder.Build();
+        
+        //app.UseStaticFiles();
+        app.UseMiddleware<RequestTimingMiddleware>();
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
@@ -28,12 +35,14 @@ public class Program
             app.UseDeveloperExceptionPage(); // To generuje czytelną stronę błędu
         }
         
+        app.UseStatusCodePagesWithReExecute("/Home/HttpStatus", "?code={0}");
+        
         app.UseHttpsRedirection();
         app.UseRouting();
 
         app.UseAuthorization();
 
-        app.MapStaticAssets();
+        //app.MapStaticAssets();
         
         app.MapControllerRoute("books-by-year", "books/year/{year:int:min(1450)}",
             new { controller = "Book", action = "ByYear" });                    // ograniczenie int + min
@@ -42,6 +51,8 @@ public class Program
         app.MapControllerRoute("docs", "docs/{*path}",
             new { controller = "Home", action = "Docs" });                      // catch-all
         app.MapControllerRoute("admin-area", "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+        app.MapControllerRoute("books-archive", "archive/{year:int}/{month:int:range(1,12)}",
+            new { controller = "Book", action = "ByYear"});
         app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");   // segmenty opcjonalne
 
         app.Run();

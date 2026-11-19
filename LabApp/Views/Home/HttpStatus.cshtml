@@ -1,0 +1,10 @@
+@{
+    ViewData["Title"] = $"Błąd {ViewBag.Code}";
+    Layout = "_Layout";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4 text-danger">Kod statusu: @ViewBag.Code</h1>
+    <p class="lead">@ViewBag.Description</p>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3">Powrót na stronę główną</a>
+</div>

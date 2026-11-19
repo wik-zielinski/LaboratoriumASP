@@ -8,4 +8,11 @@ public static class BookStoreMemory
         new() { Id = 2, Title = "Cyberiada", Isbn = "978-83-08-06535-8", PublicationDate = new(1965, 1, 1), NumPages = 296, Price = 44.00m, Author = "Stanisław Lem" },
         new() { Id = 3, Title = "Lalka",     Isbn = "978-83-7327-000-8", PublicationDate = new(1890, 1, 1), NumPages = 720, Price = 29.50m, Author = "Bolesław Prus" },
     };
+
+    public static readonly List<Author> Authors = new()
+    {
+        new() { Id = 1, Name = "Stanisław Lem" },
+        new() { Id = 2, Name = "Bolesław Prus" },
+        new() { Id = 3, Name = "Andrzej Sapkowski" }
+    };
 }
