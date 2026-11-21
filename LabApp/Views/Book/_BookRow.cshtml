@@ -1,7 +1,13 @@
 @model Book
 <tr>
-    <td>@Model.Title</td>
+    
+    <td><a asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a></td>
     <td>@Model.Author</td>
     <td>@Model.PublicationDate?.Year</td>
     <td>@Model.Price.ToString("C")</td>
+    <td>
+        <a class="btn btn-light"asp-action="Edit" asp-controller="Book" asp-route-id="@Model.Id">Edytuj</a>
+        <a class="btn btn-info"asp-action="Details" asp-controller="Book" asp-route-id="@Model.Id">Szczegóły</a>
+        <a class="btn btn-danger"asp-action="Delete" asp-controller="Book" asp-route-id="@Model.Id">Usuń</a>
+    </td>
 </tr>

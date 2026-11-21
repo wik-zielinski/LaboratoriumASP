@@ -7,7 +7,7 @@ namespace LabApp.Controllers;
 
 [MeasureTime]
 [ServiceFilter(typeof(LogActionFilter))]
-public class BookController : Controller
+public class BookController(IBookService service) : Controller
 {
 // (0) GET /Book/Hello - zwykły tekst
     [SecondActionFilter("Filtr-A", Order = 1)]
@@ -22,7 +22,7 @@ public class BookController : Controller
     [HttpGet("Book/Details/{id:int}")]
     public IActionResult Details(int id)
     {
-        var book = BookStoreMemory.Books.FirstOrDefault(b => b.Id == id);
+        var book = service.FindById(id);
         if (book is null) return NotFound();
         ViewBag.Id = id;
         return View();
@@ -75,7 +75,7 @@ public class BookController : Controller
     // GET
     public IActionResult Index()
     {
-        return View(BookStoreMemory.Books);
+        return View(service.FindAll());
     }
     
     [HttpGet]
@@ -91,9 +91,8 @@ public class BookController : Controller
         {
             return View(model);
         }
-        BookStoreMemory.Books.Add(new Book()
+        service.Add(new Book()
         {
-            Id = BookStoreMemory.Books.Max(x => x.Id) + 1,
             Title = model.Title,
             Author = model.Author,
             PublicationDate =  model.PublicationDate,
@@ -116,7 +115,8 @@ public class BookController : Controller
     public async Task<IActionResult> ByIsbn(string isbn)
     {
          /* znajdź książkę, przekieruj na Details lub NotFound() */
-         var book = BookStoreMemory.Books.FirstOrDefault(b => b.Isbn.Replace("-", "") == isbn);
+         // tymczasowe rozwiazanie
+         var book = service.FindAll().FirstOrDefault(b => b.Isbn.Replace("-", "") == isbn);
 
          if (book is null) return NotFound();
          
@@ -124,4 +124,18 @@ public class BookController : Controller
     }
 
     public IActionResult Boom() => throw new InvalidOperationException("Celowy wyjątek");
+
+    [HttpGet]
+    public IActionResult Delete(int id)
+    {
+        var book = service.FindById(id);
+        return View(book);
+    }
+
+    [HttpPost]
+    public IActionResult ConfirmDelete(BookDeleteViewModel vm)
+    {
+        service.Delete(vm.Id);
+        return RedirectToAction(nameof(Index));
+    }
 }

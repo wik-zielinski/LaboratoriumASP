@@ -1,6 +1,9 @@
 using System.Globalization;
 using LabApp.Filters;
 using LabApp.Middleware;
+using LabApp.Models;
+using LabApp.Models.Ef;
+using Microsoft.EntityFrameworkCore;
 
 namespace LabApp;
 
@@ -11,15 +14,23 @@ public class Program
         CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pl-PL");
         CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pl-PL");
         var builder = WebApplication.CreateBuilder(args);
+        var connection = builder.Configuration["Database:ConnectionString"];
 
         // Add services to the container.
-        builder.Services.AddControllersWithViews(o => o.Filters.Add<GlobalExceptionFilter>());
         builder.Services.AddScoped<LogActionFilter>();
         builder.Services.AddSingleton<RequestStats>();
+        //Lab 3
+        builder.Services.AddControllersWithViews(o => o.Filters.Add<GlobalExceptionFilter>());
+        
+        //Lab 4
+        builder.Services.AddDbContext<AppDbContext>(
+            o => o.UseSqlite(connection)
+            );
+        builder.Services.AddScoped<IBookService, EfBookService>();
         
         var app = builder.Build();
         
-        //app.UseStaticFiles();
+        app.UseStaticFiles();
         app.UseMiddleware<RequestTimingMiddleware>();
 
         // Configure the HTTP request pipeline.
